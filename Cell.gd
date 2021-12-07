@@ -3,7 +3,7 @@ extends StaticBody2D
 var dragging = false
 var orig
 var drag_pos
-var channels = []
+var channels = 0 setget setChannels
 
 onready var focus = $Focus
 onready var world = get_parent()
@@ -26,7 +26,13 @@ func setTyp(t):
 
 func setCount(c):
 	count = c
-	$Count.text = str(count)
+	if count > 63:
+		$Count.text = "MAX"
+	else:
+		$Count.text = str(count)
+	refreshGates()
+	
+func refreshGates():
 	$Gate1_close.visible = false
 	$Gate1_open.visible = false
 	$Gate2_close.visible = false
@@ -43,9 +49,32 @@ func setCount(c):
 	if count > 29:
 		$Gate3_close.visible = true
 		$Gate3_open.visible = true
+		
+	if channels > 0:
+		$Gate1_open.visible = false
+		
+	if channels > 1:
+		$Gate2_open.visible = false
+		
+	if channels > 2:
+		$Gate3_open.visible = false
+
+func setChannels(c):
+	channels = c
+	refreshGates()
 
 func getCount():
 	return count
+	
+func hasOpenChannel():
+	var m = 0
+	if count > 0:
+		m = m + 1
+	if count > 9:
+		m = m + 1
+	if count > 29:
+		m = m + 1
+	return m - channels > 0
 
 func _mouse_enter():
 	var obj = world.getDragFrom()
@@ -58,8 +87,11 @@ func _mouse_exit():
 	world.setDragTo(null)
 
 func _input_event(_viewport, event, _shape_idx):
+	if not world.started:
+		return
+
 	if event is InputEventMouseButton:
-		if event.pressed:
+		if event.pressed and hasOpenChannel():
 			dragging = true
 			orig = get_global_mouse_position()
 			world.setDragFrom(self)
@@ -78,33 +110,10 @@ func _input(event):
 func _process(_delta):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		drag_pos = get_global_mouse_position()
+	
 	update()
 
 func _draw():
 	if dragging:
-		draw_dashed_line(Vector2(0,0), Vector2(drag_pos.x - orig.x, drag_pos.y - orig.y), Color(0, 0, 255), 15, 15)
+		Global.draw_dashed_line(self, Vector2(0,0), Vector2(drag_pos.x - orig.x, drag_pos.y - orig.y), Color(0, 0, 255), 15, 15)
 
-
-func draw_dashed_line(from, to, color, width, dash_length = 5, cap_end = false, antialiased = false):
-	var length = (to - from).length()
-	var normal = (to - from).normalized()
-	var dash_step = normal * dash_length
-	
-	if length < dash_length: #not long enough to dash
-		draw_line(from, to, color, width, antialiased)
-		return
-
-	else:
-		var draw_flag = true
-		var segment_start = from
-		var steps = length/dash_length
-		for _start_length in range(0, steps + 1):
-			var segment_end = segment_start + dash_step
-			if draw_flag:
-				draw_line(segment_start, segment_end, color, width, antialiased)
-
-			segment_start = segment_end
-			draw_flag = !draw_flag
-		
-		if cap_end:
-			draw_line(segment_start, to, color, width, antialiased)
