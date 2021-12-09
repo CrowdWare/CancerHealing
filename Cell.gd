@@ -6,7 +6,7 @@ var drag_pos
 var channels = 0 setget setChannels
 
 onready var focus = $Focus
-onready var world = get_parent()
+onready var world = get_tree().get_root().get_node("World")
 
 export var count = 0 setget setCount
 export var typ = 0 setget setTyp
@@ -87,7 +87,7 @@ func _mouse_exit():
 	world.setDragTo(null)
 
 func _input_event(_viewport, event, _shape_idx):
-	if not world.started:
+	if not world.started or typ != 1:
 		return
 
 	if event is InputEventMouseButton:
@@ -95,6 +95,7 @@ func _input_event(_viewport, event, _shape_idx):
 			dragging = true
 			orig = get_global_mouse_position()
 			world.setDragFrom(self)
+			world.swipe_start = null
 		
 func _input(event):
 	if event is InputEventMouseButton and not event.pressed:

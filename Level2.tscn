@@ -17,8 +17,3 @@ count = 5
 position = Vector2( 461, 525 )
 count = 30
 typ = 2
-
-[node name="Cell" parent="." instance=ExtResource( 1 )]
-position = Vector2( 496, 900 )
-count = 44
-typ = 3
