@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 var dragging = false
+var dragHitsWall = false
 var orig
 var drag_pos
 var channels = 0 setget setChannels
@@ -10,6 +11,21 @@ onready var world = get_tree().get_root().get_node("World")
 
 export var count = 0 setget setCount
 export var typ = 0 setget setTyp
+export var isSun = false setget setSun
+
+func setSun(s):
+	isSun = s
+	$Sun.visible = s
+
+func openGates():
+	if count > 29:
+		return 3 - channels
+	elif count > 9:
+		return 2 - channels
+	elif count > 0:
+		return 1 - channels
+	else:
+		return 0
 	
 func setTyp(t):
 	typ = t
@@ -40,24 +56,35 @@ func refreshGates():
 	$Gate3_close.visible = false
 	$Gate3_open.visible = false
 	
-	if count > 0:
+	if count > 29:
 		$Gate1_close.visible = true
 		$Gate1_open.visible = true
-	if count > 9:
 		$Gate2_close.visible = true
 		$Gate2_open.visible = true
-	if count > 29:
 		$Gate3_close.visible = true
 		$Gate3_open.visible = true
-		
-	if channels > 0:
-		$Gate1_open.visible = false
-		
-	if channels > 1:
-		$Gate2_open.visible = false
-		
-	if channels > 2:
-		$Gate3_open.visible = false
+		if channels > 0:
+			$Gate3_open.visible = false
+		if channels > 1:
+			$Gate2_open.visible = false
+		if channels > 2:
+			$Gate1_open.visible = false
+
+	elif count > 9:
+		$Gate1_close.visible = true
+		$Gate1_open.visible = true
+		$Gate3_close.visible = true
+		$Gate3_open.visible = true
+		if channels > 0:
+			$Gate3_open.visible = false
+		if channels > 1:
+			$Gate1_open.visible = false
+
+	elif count > 0:
+		$Gate2_close.visible = true
+		$Gate2_open.visible = true
+		if channels > 0:
+			$Gate2_open.visible = false
 
 func setChannels(c):
 	channels = c
@@ -78,7 +105,7 @@ func hasOpenChannel():
 
 func _mouse_enter():
 	var obj = world.getDragFrom()
-	if obj and obj != self:
+	if obj and obj != self and not obj.dragHitsWall:
 		focus.visible = true
 		world.setDragTo(self)
 	
@@ -111,10 +138,22 @@ func _input(event):
 func _process(_delta):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		drag_pos = get_global_mouse_position()
-	
 	update()
 
 func _draw():
 	if dragging:
-		Global.draw_dashed_line(self, Vector2(0,0), Vector2(drag_pos.x - orig.x, drag_pos.y - orig.y), Color(0, 0, 255), 15, 15)
+		if dragHitsWall():
+			dragHitsWall = true
+			Global.draw_dashed_line(self, Vector2(0,0), Vector2(drag_pos.x - orig.x, drag_pos.y - orig.y), Color(.5, .5, .5), 15, 15)
+		else:
+			dragHitsWall = false
+			Global.draw_dashed_line(self, Vector2(0,0), Vector2(drag_pos.x - orig.x, drag_pos.y - orig.y), Color(0, 0, 1), 15, 15)
 
+func dragHitsWall():
+	for child in world.get_node("Level").get_children():
+		if child is StaticBody2D:
+			if child.typ == -1:
+				var hit = Geometry.segment_intersects_circle(self.position, drag_pos, child.position, 20)
+				if hit > 0:
+					return true
+	return false

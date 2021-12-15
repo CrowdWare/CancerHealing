@@ -5,20 +5,10 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Cell2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 170, 688 )
-count = 20
+position = Vector2( 362, 704 )
+count = 1
 typ = 1
 
 [node name="Cell1" parent="." instance=ExtResource( 1 )]
-position = Vector2( 190, 311 )
+position = Vector2( 357, 449 )
 count = 5
-
-[node name="Cell3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 461, 525 )
-count = 30
-typ = 2
-
-[node name="Cell" parent="." instance=ExtResource( 1 )]
-position = Vector2( 496, 900 )
-count = 44
-typ = 3

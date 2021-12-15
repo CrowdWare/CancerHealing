@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://world.gd" type="Script" id=1]
+[ext_resource path="res://niederlage.png" type="Texture" id=2]
 [ext_resource path="res://Redkost Comic.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://sieg.png" type="Texture" id=4]
 
@@ -46,5 +47,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="NochMal" type="Button" parent="."]
+visible = false
+margin_left = 199.0
+margin_top = 1195.0
+margin_right = 526.0
+margin_bottom = 1327.0
+custom_fonts/font = SubResource( 2 )
+text = "NOCH MAL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Niederlage" type="Sprite" parent="."]
+visible = false
+position = Vector2( 367, 320 )
+z_index = 3
+texture = ExtResource( 2 )
+
 [connection signal="pressed" from="StartButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Weiter" to="." method="_on_Weiter_pressed"]
+[connection signal="pressed" from="NochMal" to="." method="_on_NochMal_pressed"]

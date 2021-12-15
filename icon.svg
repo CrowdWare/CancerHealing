@@ -9,6 +9,9 @@
    id="svg5"
    inkscape:version="1.1.1 (3bf5ae0, 2021-09-20)"
    sodipodi:docname="icon.svg"
+   inkscape:export-filename="/home/art/SourceCode/CancerWar/icon.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,8 +27,8 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="11.920445"
-     inkscape:cx="33.933296"
-     inkscape:cy="31.66828"
+     inkscape:cx="33.933297"
+     inkscape:cy="31.668281"
      inkscape:window-width="1848"
      inkscape:window-height="1016"
      inkscape:window-x="72"
@@ -38,16 +41,6 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <rect
-       style="fill:#b3b3b3;stroke-width:2"
-       id="rect880"
-       width="64.121796"
-       height="63.842705"
-       x="0.053257842"
-       y="0.12068073"
-       inkscape:export-filename="/home/art/SourceCode/First2D/icon.png"
-       inkscape:export-xdpi="96.3862"
-       inkscape:export-ydpi="96.3862" />
     <ellipse
        style="fill:#0000ff;stroke-width:0.793;stroke:#000000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        id="path904"

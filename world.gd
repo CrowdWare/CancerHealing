@@ -8,13 +8,21 @@ var started = false
 var startTime = 0
 var processedFrame = -1
 var swipe_start = null
+var level = 1
 
 const SPEED = 150
+const MAX_COUNT = 3
 
+
+######
+##
+##  TODO: Goldhaufen, Wachtürme
+##
+######
 
 func _ready():
 	print("Hello world")
-	loadLevel("Level2")
+	loadLevel("Level" + str(level))
 
 func setDragTo(object):
 	drag_to = object
@@ -29,6 +37,19 @@ func getDragFrom():
 	return drag_from
 	
 func drop(from, to):
+	if not started:
+		return
+
+	# erst mal prüfen, ob line schon besteht
+	if isAttacking(from, to):
+		return
+
+	# line war schon da, allerdings in umgekehrter Reihenfolge
+	for line in lines:
+		if line.from == to and line.to == from:
+			line.from.channels = line.from.channels - 1
+			lines.erase(line)
+			
 	var line = Line.new(from, to, Color(0, 0, 255))
 	from.channels = from.channels + 1
 	lines.append(line)
@@ -50,7 +71,19 @@ func _on_Weiter_pressed():
 	started = true
 	startTime = OS.get_unix_time()
 	processedFrame = -1
-	loadLevel("Level1")
+	if level < MAX_COUNT:
+		level = level + 1
+	loadLevel("Level" + str(level))
+	update()
+	
+
+func _on_NochMal_pressed():
+	$NochMal.visible = false
+	$Niederlage.visible = false
+	started = true
+	startTime = OS.get_unix_time()
+	processedFrame = -1
+	loadLevel("Level" + str(level))
 	update()
 
 func loadLevel(lvl):
@@ -82,53 +115,137 @@ func _process(delta):
 	var curTime = OS.get_unix_time()
 	var elapsed = curTime - startTime
 	
+	# nach 5 Sekunden werden die Gegner auch aktiv
+	if elapsed > 5 and elapsed > processedFrame:
+		for child in $Level.get_children():
+			if child is StaticBody2D:	
+				if child.typ > 1 and child.openGates() > 0:
+					# enemy hat noch min. einen gate frei, mit dem er andocken kann
+					var target = findNextTarget(child)
+					if target:
+						var line = Line.new(child, target, Color(255, 0, 0))
+						child.channels = child.channels + 1
+						lines.append(line)
+						update()
+	
 	# alle cellen schicken pro Sekunde eine neue energy los
 	if elapsed > processedFrame:
 		for line in lines:
-			var energy = load("res://Energy.tscn")
-			var obj = energy.instance()
-			if line.from.typ > 1:
-				obj.get_node("Sprite").frame = 1
-			obj.position = line.from.position
-			obj.source = line.from
-			obj.target = line.to
-			add_child_below_node(line.from, obj)
-			energies.append(obj)
-
+			sendEnergy(line)
+			if line.from.isSun:
+				# sende eine zweite Energy bei einer Sonne
+				var energy = sendEnergy(line)
+				# die position etwas nach vorne verlagern, damit man beide Energien sehen kann
+				var pos = energy.position.move_toward(energy.target.position, 0.06 * SPEED)
+				energy.position = pos
 		processedFrame = elapsed
 	
 	#alle energien bewegen
 	for energy in energies:
 		var pos = energy.position.move_toward(energy.target.position, delta * SPEED)
-		# ziel erreicht, dann energy wieder löschen
-		if pos == energy.target.position:
-			if energy.source.typ == energy.target.typ:
-				energy.target.count = energy.target.count + 1
+		
+		#check collision
+		var test = checkCollision(energy)
+		if test != null:
+			energies.erase(energy)
+			energy.queue_free()
+			energies.erase(test)
+			test.queue_free()
+		
+		# ziel fast erreicht, dann energy wieder löschen
+		if Geometry.is_point_in_circle(pos, energy.target.position, 50):
+			if energy.source_typ == energy.target.typ:
+				if energy.target.count > 63:
+					# diese Energy senden wir gleich weiter an alle Channels
+					for line in lines:
+						if line.from == energy.target:
+							sendEnergy(line)
+				else:
+					energy.target.count = energy.target.count + 1
 			else:
 				energy.target.count = energy.target.count - 1
 				if energy.target.count < 0:
-					energy.target.typ = energy.source.typ
+					energy.target.typ = energy.source_typ
 					energy.target.count = 1
+					deleteLines(energy.target)
+					update()
 			energies.erase(energy)
 			energy.queue_free()
 		else:
 			energy.position = pos
 			
 	var enemyCount = 0
+	var playerCount = 0
 	for child in $Level.get_children():
 		if child is StaticBody2D:
-			if child.typ != 1:
+			if child.typ == 1:
+				playerCount = playerCount + 1
+			elif child.typ > -1:
 				enemyCount = enemyCount + 1
 					
-	if enemyCount == 0:
+	if enemyCount == 0 or playerCount == 0:
 		started = false
 		lines.clear()
 		for energy in energies:
 			energy.queue_free()
 		energies.clear()
-		$Sieg.visible = true
-		$Weiter.visible = true
+		if enemyCount == 0:
+			$Sieg.visible = true
+			$Weiter.visible = true
+		else:
+			$Niederlage.visible = true
+			$NochMal.visible = true
 		
+func sendEnergy(line):
+	var energy = load("res://Energy.tscn")
+	var obj = energy.instance()
+	obj.get_node("Sprite").frame = line.from.typ - 1
+	obj.position = line.from.position
+	obj.source = line.from
+	obj.target = line.to
+	obj.source_typ = line.from.typ
+	add_child_below_node(line.from, obj)
+	energies.append(obj)
+	return obj
+
+func deleteLines(cell):
+	for line in lines:
+		if line.from == cell:
+			line.from.channels = line.from.channels - 1
+			lines.erase(line)
+	
+func checkCollision(en):
+	for energy in energies:
+		if energy != en and energy.source.typ != en.source.typ:
+			if en.target == energy.source and en.source == energy.target:
+				if Geometry.is_point_in_circle(en.position, energy.position, 40):
+					return energy
+	return null
+	
+func findTargets(cell):
+	var targets = []
+	for child in $Level.get_children():
+		if child is StaticBody2D:
+			if child.typ != cell.typ:
+				targets.append(child)
+	return targets
+	
+func findNextTarget(cell):
+	var bestTarget = null
+	var targets = findTargets(cell)
+	for target in targets:
+		if not isAttacking(cell, target):
+			if bestTarget == null:
+				bestTarget = target
+			elif bestTarget and target.count < bestTarget.count:
+				bestTarget = target
+	return bestTarget
+	
+func isAttacking(f, t):
+	for line in lines:
+		if line.from == f and line.to == t:
+			return true
+	return false
 
 class Line:
 	var from

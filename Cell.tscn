@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://blue.png" type="Texture" id=1]
 [ext_resource path="res://focus.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://red.png" type="Texture" id=8]
 [ext_resource path="res://gray.png" type="Texture" id=9]
 [ext_resource path="res://yellow.png" type="Texture" id=10]
+[ext_resource path="res://sun.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -34,6 +35,10 @@ font_data = ExtResource( 6 )
 z_index = 1
 input_pickable = true
 script = ExtResource( 3 )
+
+[node name="Sun" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 11 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
