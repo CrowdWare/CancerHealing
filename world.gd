@@ -11,7 +11,7 @@ var swipe_start = null
 var level = 1
 
 const SPEED = 150
-const MAX_COUNT = 3
+const MAX_LEVEL_COUNT = 4
 
 
 ######
@@ -71,7 +71,7 @@ func _on_Weiter_pressed():
 	started = true
 	startTime = OS.get_unix_time()
 	processedFrame = -1
-	if level < MAX_COUNT:
+	if level < MAX_LEVEL_COUNT:
 		level = level + 1
 	loadLevel("Level" + str(level))
 	update()
