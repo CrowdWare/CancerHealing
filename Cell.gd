@@ -142,7 +142,7 @@ func _process(_delta):
 
 func _draw():
 	if dragging:
-		if dragHitsWall() or dragThroughPlayer():
+		if dragHitsWall():# or dragThroughPlayer():
 			dragHitsWallOrPlayer = true
 			Global.draw_dashed_line(self, Vector2(0,0), Vector2(drag_pos.x - orig.x, drag_pos.y - orig.y), Color(.5, .5, .5), 15, 15)
 		else:
@@ -151,9 +151,12 @@ func _draw():
 
 func dragHitsWall():
 	for child in world.get_node("Level").get_children():
-		if child is StaticBody2D:
-			if child.typ == -1:
-				var hit = Geometry.segment_intersects_circle(self.position, drag_pos, child.position, 20)
+		if child is TileMap:
+			for tile in child.get_used_cells():
+				var pos = child.map_to_world(tile)
+				pos.x = pos.x + 16
+				pos.y = pos.y + 16
+				var hit = Geometry.segment_intersects_circle(self.position, drag_pos, pos, 16)
 				if hit > 0:
 					return true
 	return false
@@ -164,7 +167,6 @@ func dragThroughPlayer():
 			if child != self and child.typ == 1:
 				var intersects = Geometry.segment_intersects_circle(self.position, drag_pos, child.position, 40)
 				var hit = Geometry.is_point_in_circle(drag_pos, child.position, 40)
-				
 				if intersects > 0 and hit == false:
 					return true
 	return false

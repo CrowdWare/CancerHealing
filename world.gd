@@ -8,11 +8,10 @@ var started = false
 var startTime = 0
 var processedFrame = -1
 var swipe_start = null
-var level = 5
+var level = 1
 
 const SPEED = 150
 const MAX_LEVEL_COUNT = 5
-
 
 ######
 ##
@@ -76,9 +75,10 @@ func _on_Weiter_pressed():
 	processedFrame = -1
 	if level < MAX_LEVEL_COUNT:
 		level = level + 1
+	else:
+		level = 1
 	loadLevel("Level" + str(level))
 	update()
-	
 
 func _on_NochMal_pressed():
 	$NochMal.visible = false
@@ -271,11 +271,23 @@ func isSupporting(f, t):
 			return true
 	return false
 
+#func pathHitsWall(from, to):
+#	for child in $Level.get_children():
+#		if child is StaticBody2D:
+#			if child.typ == -1:
+#				var hit = Geometry.segment_intersects_circle(from.position, to.position, child.position, 20)
+#				if hit > 0:
+#					return true
+#	return false
+
 func pathHitsWall(from, to):
 	for child in $Level.get_children():
-		if child is StaticBody2D:
-			if child.typ == -1:
-				var hit = Geometry.segment_intersects_circle(from.position, to.position, child.position, 20)
+		if child is TileMap:
+			for tile in child.get_used_cells():
+				var pos = child.map_to_world(tile)
+				pos.x = pos.x + 16
+				pos.y = pos.y + 16
+				var hit = Geometry.segment_intersects_circle(from.position, to.position, pos, 16)
 				if hit > 0:
 					return true
 	return false
