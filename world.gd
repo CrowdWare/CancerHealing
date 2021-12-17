@@ -8,10 +8,10 @@ var started = false
 var startTime = 0
 var processedFrame = -1
 var swipe_start = null
-var level = 1
+var level = 5
 
 const SPEED = 150
-const MAX_LEVEL_COUNT = 4
+const MAX_LEVEL_COUNT = 5
 
 
 ######
@@ -49,15 +49,18 @@ func drop(from, to):
 		if line.from == to and line.to == from:
 			line.from.channels = line.from.channels - 1
 			lines.erase(line)
+			remove_child(line.obj)
+			line.obj.queue_free()
+			update()
 			
-	var line = Line.new(from, to, Color(0, 0, 255))
+	var line_obj = Line2D.new()
+	line_obj.add_point(from.position)
+	line_obj.add_point(to.position)
+	add_child(line_obj)
+	var line = Line.new(line_obj, from, to, Color(0, 0, 255))
 	from.channels = from.channels + 1
 	lines.append(line)
 	update()
-
-func _draw():
-	for line in lines:
-		Global.draw_dashed_line(self, line.from.position, line.to.position, line.color, 15, 15)
 
 func _on_Button_pressed():
 	$StartButton.visible = false
@@ -105,16 +108,20 @@ func _input(event):
 	if event is InputEventMouseMotion and swipe_start != null:
 		for line in lines:
 			if Geometry. segment_intersects_segment_2d(line.from.position, line.to.position, swipe_start, event.position):
-				line.from.channels = line.from.channels - 1
-				lines.erase(line)
-				update()
+				if line.from.typ == 1:
+					line.from.channels = line.from.channels - 1
+					lines.erase(line)
+					remove_child(line.obj)
+					line.obj.queue_free()
+					update()
 
 func _process(delta):
 	if not started:
 		return
 	var curTime = OS.get_unix_time()
 	var elapsed = curTime - startTime
-	
+	$FPS.set_text(str(Engine.get_frames_per_second()) + " FPS")
+
 	# nach 5 Sekunden werden die Gegner auch aktiv
 	if elapsed > 5 and elapsed > processedFrame:
 		for child in $Level.get_children():
@@ -123,8 +130,12 @@ func _process(delta):
 					# enemy hat noch min. einen gate frei, mit dem er andocken kann
 					var target = findNextTarget(child)
 					if target:
-						var line = Line.new(child, target, Color(255, 0, 0))
+						var line_obj = Line2D.new()
+						line_obj.add_point(child.position)
+						line_obj.add_point(target.position)
+						var line = Line.new(line_obj, child, target, Color(255, 0, 0))
 						child.channels = child.channels + 1
+						add_child(line_obj)
 						lines.append(line)
 						update()
 	
@@ -185,6 +196,9 @@ func _process(delta):
 					
 	if enemyCount == 0 or playerCount == 0:
 		started = false
+		for line in lines:
+			remove_child(line.obj)
+			line.obj.queue_free()
 		lines.clear()
 		for energy in energies:
 			energy.queue_free()
@@ -213,6 +227,9 @@ func deleteLines(cell):
 		if line.from == cell:
 			line.from.channels = line.from.channels - 1
 			lines.erase(line)
+			remove_child(line.obj)
+			line.obj.queue_free()
+			update()
 	
 func checkCollision(en):
 	for energy in energies:
@@ -225,16 +242,17 @@ func checkCollision(en):
 func findTargets(cell):
 	var targets = []
 	for child in $Level.get_children():
-		if child is StaticBody2D:
-			if child.typ != cell.typ:
-				targets.append(child)
+		if child != cell and child is StaticBody2D:
+			if child.typ > -1:
+				if not pathHitsWall(cell, child):
+					targets.append(child)
 	return targets
 	
 func findNextTarget(cell):
 	var bestTarget = null
 	var targets = findTargets(cell)
 	for target in targets:
-		if not isAttacking(cell, target):
+		if not isAttacking(cell, target) and not isSupporting(target, cell) and not isSupporting(cell, target):
 			if bestTarget == null:
 				bestTarget = target
 			elif bestTarget and target.count < bestTarget.count:
@@ -243,16 +261,33 @@ func findNextTarget(cell):
 	
 func isAttacking(f, t):
 	for line in lines:
-		if line.from == f and line.to == t:
+		if line.from == f and line.to == t and line.from.typ != line.to.typ:
 			return true
+	return false
+
+func isSupporting(f, t):
+	for line in lines:
+		if line.from == f and line.to == t and line.from.typ == line.to.typ:
+			return true
+	return false
+
+func pathHitsWall(from, to):
+	for child in $Level.get_children():
+		if child is StaticBody2D:
+			if child.typ == -1:
+				var hit = Geometry.segment_intersects_circle(from.position, to.position, child.position, 20)
+				if hit > 0:
+					return true
 	return false
 
 class Line:
 	var from
 	var to
 	var color
+	var obj
 
-	func _init(f, t, c):
+	func _init(o, f, t, c):
 		from = f
 		to = t
 		color = c
+		obj = o

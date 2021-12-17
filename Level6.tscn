@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Cell.tscn" type="PackedScene" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Cell1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 541, 721 )
+count = 5
+
+[node name="Cell4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 151, 711 )
+count = 5
+
+[node name="Cell5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 129, 565 )
+count = 5
+
+[node name="Cell6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 547, 569 )
+count = 5
+typ = 3
+
+[node name="Cell7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 543, 295 )
+count = 5
+
+[node name="Cell8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 261, 297 )
+count = 5
+
+[node name="Cell9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 325, 421 )
+count = 5
+
+[node name="Cell10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 129, 409 )
+count = 5
+typ = 2
+
+[node name="Cell2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 151, 889 )
+count = 15
+typ = 1
+isSun = true
+
+[node name="Cell3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 576, 899 )
+count = 5

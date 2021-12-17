@@ -1,0 +1,170 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Cell.tscn" type="PackedScene" id=1]
+[ext_resource path="res://brick.tscn" type="PackedScene" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Cell1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 541, 721 )
+count = 5
+
+[node name="Cell4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 151, 711 )
+count = 5
+
+[node name="Cell5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 129, 565 )
+count = 5
+
+[node name="Cell6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 547, 569 )
+count = 5
+typ = 3
+
+[node name="Cell7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 543, 295 )
+count = 5
+
+[node name="Cell8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 261, 297 )
+count = 5
+
+[node name="Cell9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 325, 421 )
+count = 5
+
+[node name="Cell10" parent="." instance=ExtResource( 1 )]
+position = Vector2( 129, 409 )
+count = 5
+typ = 2
+
+[node name="Cell2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 151, 889 )
+count = 15
+typ = 1
+isSun = true
+
+[node name="Cell3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 576, 899 )
+count = 5
+
+[node name="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 146, 801 )
+
+[node name="Node2D7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 116, 804 )
+
+[node name="Node2D8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 317, 805 )
+
+[node name="Node2D9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 354, 808 )
+
+[node name="Node2D10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 379, 808 )
+
+[node name="Node2D33" parent="." instance=ExtResource( 2 )]
+position = Vector2( 413, 809 )
+
+[node name="Node2D34" parent="." instance=ExtResource( 2 )]
+position = Vector2( 443, 806 )
+
+[node name="Node2D11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 543, 654 )
+
+[node name="Node2D12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 573, 654 )
+
+[node name="Node2D13" parent="." instance=ExtResource( 2 )]
+position = Vector2( 518, 657 )
+
+[node name="Node2D35" parent="." instance=ExtResource( 2 )]
+position = Vector2( 490, 646 )
+
+[node name="Node2D36" parent="." instance=ExtResource( 2 )]
+position = Vector2( 476, 633 )
+
+[node name="Node2D37" parent="." instance=ExtResource( 2 )]
+position = Vector2( 459, 616 )
+
+[node name="Node2D40" parent="." instance=ExtResource( 2 )]
+position = Vector2( 443, 610 )
+
+[node name="Node2D38" parent="." instance=ExtResource( 2 )]
+position = Vector2( 470, 663 )
+
+[node name="Node2D39" parent="." instance=ExtResource( 2 )]
+position = Vector2( 450, 686 )
+
+[node name="Node2D14" parent="." instance=ExtResource( 2 )]
+position = Vector2( 175, 502 )
+
+[node name="Node2D18" parent="." instance=ExtResource( 2 )]
+position = Vector2( 203, 502 )
+
+[node name="Node2D19" parent="." instance=ExtResource( 2 )]
+position = Vector2( 231, 502 )
+
+[node name="Node2D20" parent="." instance=ExtResource( 2 )]
+position = Vector2( 264, 503 )
+
+[node name="Node2D21" parent="." instance=ExtResource( 2 )]
+position = Vector2( 297, 503 )
+
+[node name="Node2D22" parent="." instance=ExtResource( 2 )]
+position = Vector2( 327, 503 )
+
+[node name="Node2D23" parent="." instance=ExtResource( 2 )]
+position = Vector2( 361, 490 )
+
+[node name="Node2D24" parent="." instance=ExtResource( 2 )]
+position = Vector2( 385, 473 )
+
+[node name="Node2D25" parent="." instance=ExtResource( 2 )]
+position = Vector2( 406, 459 )
+
+[node name="Node2D26" parent="." instance=ExtResource( 2 )]
+position = Vector2( 405, 432 )
+
+[node name="Node2D27" parent="." instance=ExtResource( 2 )]
+position = Vector2( 411, 404 )
+
+[node name="Node2D28" parent="." instance=ExtResource( 2 )]
+position = Vector2( 411, 374 )
+
+[node name="Node2D29" parent="." instance=ExtResource( 2 )]
+position = Vector2( 408, 349 )
+
+[node name="Node2D30" parent="." instance=ExtResource( 2 )]
+position = Vector2( 218, 369 )
+
+[node name="Node2D31" parent="." instance=ExtResource( 2 )]
+position = Vector2( 194, 352 )
+
+[node name="Node2D32" parent="." instance=ExtResource( 2 )]
+position = Vector2( 178, 334 )
+
+[node name="Node2D15" parent="." instance=ExtResource( 2 )]
+position = Vector2( 147, 504 )
+
+[node name="Node2D16" parent="." instance=ExtResource( 2 )]
+position = Vector2( 117, 499 )
+
+[node name="Node2D17" parent="." instance=ExtResource( 2 )]
+position = Vector2( 88, 498 )
+
+[node name="Node2D6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 174, 799 )
+
+[node name="Node2D2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 290, 804 )
+
+[node name="Node2D3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 200, 805 )
+
+[node name="Node2D4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 222, 812 )
+
+[node name="Node2D5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 253, 808 )
