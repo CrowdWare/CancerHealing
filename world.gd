@@ -8,7 +8,7 @@ var started = false
 var startTime = 0
 var processedFrame = -1
 var swipe_start = null
-var level = 1
+var level = 4
 
 const SPEED = 150
 const MAX_LEVEL_COUNT = 5
@@ -22,6 +22,9 @@ const MAX_LEVEL_COUNT = 5
 func _ready():
 	print("Hello world")
 	loadLevel("Level" + str(level))
+	var tut = $Level.get_node("Tutorial")
+	if tut:
+		tut.play()
 
 func setDragTo(object):
 	drag_to = object
@@ -40,7 +43,7 @@ func drop(from, to):
 		return
 
 	# erst mal prüfen, ob line schon besteht
-	if isAttacking(from, to):
+	if isAttacking(from, to) or isSupporting(from, to):
 		return
 
 	# line war schon da, allerdings in umgekehrter Reihenfolge
@@ -62,6 +65,9 @@ func drop(from, to):
 	update()
 
 func _on_Button_pressed():
+	var tut = $Level.get_node("Tutorial")
+	if tut:
+		tut.stop()
 	$StartButton.visible = false
 	started = true
 	startTime = OS.get_unix_time()

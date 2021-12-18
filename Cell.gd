@@ -1,7 +1,6 @@
 extends StaticBody2D
 
 var dragging = false
-var dragHitsWallOrPlayer = false
 var orig
 var drag_pos
 var channels = 0 setget setChannels
@@ -105,7 +104,7 @@ func hasOpenChannel():
 
 func _mouse_enter():
 	var obj = world.getDragFrom()
-	if obj and obj != self and not obj.dragHitsWallOrPlayer:
+	if obj and obj != self and not obj.dragHitsWallOrThroughPlayer(self) and not world.isAttacking(obj, self) and not world.isSupporting(obj, self):
 		focus.visible = true
 		world.setDragTo(self)
 	
@@ -142,12 +141,17 @@ func _process(_delta):
 
 func _draw():
 	if dragging:
-		if dragHitsWall() or dragThroughPlayer():
-			dragHitsWallOrPlayer = true
+		if dragHitsWallOrThroughPlayer():
 			Global.draw_dashed_line(self, Vector2(0,0), Vector2(drag_pos.x - orig.x, drag_pos.y - orig.y), Color(.5, .5, .5), 15, 15)
 		else:
-			dragHitsWallOrPlayer = false
 			Global.draw_dashed_line(self, Vector2(0,0), Vector2(drag_pos.x - orig.x, drag_pos.y - orig.y), Color(0, 0, 1), 15, 15)
+
+func dragHitsWallOrThroughPlayer(ignore = null):
+	var wall = dragHitsWall()
+	var player = dragThroughPlayer(ignore)
+	if wall or player:
+		return true
+	return false
 
 func dragHitsWall():
 	for child in world.get_node("Level").get_children():
@@ -156,16 +160,17 @@ func dragHitsWall():
 				var pos = child.map_to_world(tile)
 				pos.x = pos.x + 16
 				pos.y = pos.y + 16
-				var hit = Geometry.segment_intersects_circle(self.position, drag_pos, pos, 16)
+				var hit = Geometry.segment_intersects_circle(position, drag_pos, pos, 16)
 				if hit > 0:
 					return true
 	return false
 	
-func dragThroughPlayer():
+func dragThroughPlayer(ignore):
 	for child in world.get_node("Level").get_children():
 		if child is StaticBody2D:
-			if child != self:
-				var intersects = Geometry.segment_intersects_circle(self.position, drag_pos, child.position, 40)
+			if child != self and child != ignore:
+				drag_pos = get_global_mouse_position()
+				var intersects = Geometry.segment_intersects_circle(position, drag_pos, child.position, 40)
 				var hit = Geometry.is_point_in_circle(drag_pos, child.position, 40)
 				if intersects > 0 and hit == false:
 					return true

@@ -1,8 +1,38 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Cell.tscn" type="PackedScene" id=1]
+[ext_resource path="res://run-7.png" type="Texture" id=2]
+[ext_resource path="res://run-6.png" type="Texture" id=3]
+[ext_resource path="res://run-2.png" type="Texture" id=4]
+[ext_resource path="res://run-1.png" type="Texture" id=5]
+[ext_resource path="res://run-8.png" type="Texture" id=6]
+[ext_resource path="res://run-5.png" type="Texture" id=7]
+[ext_resource path="res://run-3.png" type="Texture" id=8]
+[ext_resource path="res://run-4.png" type="Texture" id=9]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+	
+var hasTutorial = true
+
+func playTutorial():
+	$AnimatedSprite.play()
+	
+func stopTutorial():
+	$AnimatedSprite.stop()
+	$AnimatedSprite.visible = false
+"
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Node2D" type="Node2D"]
+script = SubResource( 2 )
 
 [node name="Cell2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 362, 704 )
@@ -12,3 +42,7 @@ typ = 1
 [node name="Cell1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 357, 449 )
 count = 5
+
+[node name="Tutorial" type="AnimatedSprite" parent="."]
+position = Vector2( 350, 263 )
+frames = SubResource( 1 )
