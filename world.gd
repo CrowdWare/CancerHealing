@@ -271,15 +271,6 @@ func isSupporting(f, t):
 			return true
 	return false
 
-#func pathHitsWall(from, to):
-#	for child in $Level.get_children():
-#		if child is StaticBody2D:
-#			if child.typ == -1:
-#				var hit = Geometry.segment_intersects_circle(from.position, to.position, child.position, 20)
-#				if hit > 0:
-#					return true
-#	return false
-
 func pathHitsWall(from, to):
 	for child in $Level.get_children():
 		if child is TileMap:

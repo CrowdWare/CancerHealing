@@ -10,7 +10,7 @@ position = Vector2( 541, 721 )
 count = 5
 
 [node name="Cell4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 151, 711 )
+position = Vector2( 167, 738 )
 count = 5
 
 [node name="Cell5" parent="." instance=ExtResource( 1 )]
