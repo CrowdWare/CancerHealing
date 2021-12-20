@@ -1,56 +1,44 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Cell.tscn" type="PackedScene" id=1]
 [ext_resource path="res://wall.tres" type="TileSet" id=2]
+[ext_resource path="res://Tutorial2/tutorial2_3.png" type="Texture" id=3]
+[ext_resource path="res://Tutorial2/tutorial2_4.png" type="Texture" id=4]
+[ext_resource path="res://Tutorial2/tutorial2_5.png" type="Texture" id=5]
+[ext_resource path="res://Tutorial2/tutorial2_6.png" type="Texture" id=6]
+[ext_resource path="res://Tutorial2/tutorial2_2.png" type="Texture" id=7]
+[ext_resource path="res://Tutorial2/tutorial2_1.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Cell1" parent="." instance=ExtResource( 1 )]
-position = Vector2( 541, 721 )
+position = Vector2( 274, 634 )
 count = 5
 
-[node name="Cell4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 167, 738 )
+[node name="Cell2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 397, 840 )
 count = 5
-
-[node name="Cell5" parent="." instance=ExtResource( 1 )]
-position = Vector2( 129, 565 )
-count = 5
-
-[node name="Cell6" parent="." instance=ExtResource( 1 )]
-position = Vector2( 547, 569 )
-count = 5
-
-[node name="Cell7" parent="." instance=ExtResource( 1 )]
-position = Vector2( 543, 295 )
-count = 5
-typ = 3
-
-[node name="Cell8" parent="." instance=ExtResource( 1 )]
-position = Vector2( 260, 267 )
-count = 5
-
-[node name="Cell9" parent="." instance=ExtResource( 1 )]
-position = Vector2( 325, 421 )
-count = 5
-
-[node name="Cell10" parent="." instance=ExtResource( 1 )]
-position = Vector2( 129, 409 )
-count = 5
-typ = 2
-
-[node name="Cell11" parent="." instance=ExtResource( 1 )]
-position = Vector2( 168, 943 )
-count = 15
 typ = 1
-isSun = true
 
 [node name="Cell3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 576, 899 )
+position = Vector2( 538, 634 )
 count = 5
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655372, 0, 0, 720909, 0, 0, 786446, 0, 0, 851982, 0, 0, 917518, 0, 0, 983042, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0, 983048, 0, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983052, 0, 0, 983053, 0, 0, 983054, 0, 0, 1245196, 0, 0, 1310732, 0, 0, 1310733, 0, 0, 1310734, 0, 0, 1310735, 0, 0, 1310736, 0, 0, 1310737, 0, 0, 1310738, 0, 0, 1638403, 0, 0, 1638404, 0, 0, 1638405, 0, 0, 1638406, 0, 0, 1638407, 0, 0, 1638408, 0, 0, 1638409, 0, 0, 1638410, 0, 0, 1638411, 0, 0, 1638412, 0, 0, 1638413, 0, 0, 1638414, 0, 0 )
+tile_data = PoolIntArray( 1114124, 0, 0, 1179660, 0, 0, 1245196, 0, 0, 1310732, 0, 0, 1376268, 0, 0, 1441804, 0, 0 )
+
+[node name="Tutorial" type="AnimatedSprite" parent="."]
+position = Vector2( 394, 286 )
+frames = SubResource( 1 )
+frame = 3

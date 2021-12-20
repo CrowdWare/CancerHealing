@@ -11,7 +11,7 @@ var swipe_start = null
 var level = 1
 
 const SPEED = 150
-const MAX_LEVEL_COUNT = 5
+const MAX_LEVEL_COUNT = 6
 
 ######
 ##
@@ -71,6 +71,7 @@ func _on_Button_pressed():
 		tut.visible = false
 		tut.stop()
 	$StartButton.visible = false
+	$Undo.visible = true
 	started = true
 	startTime = OS.get_unix_time()
 
@@ -78,25 +79,35 @@ func _on_Weiter_pressed():
 	# nächsten Level laden	
 	$Weiter.visible = false
 	$Sieg.visible = false
-	started = true
-	startTime = OS.get_unix_time()
 	processedFrame = -1
 	if level < MAX_LEVEL_COUNT:
 		level = level + 1
 	else:
 		level = 1
 	loadLevel("Level" + str(level))
+	$StartButton.visible = true
+	var tut = $Level.get_node("Tutorial")
+	if tut:
+		tut.play()
 	update()
 
 func _on_NochMal_pressed():
 	# level noch mal starten
 	$NochMal.visible = false
 	$Niederlage.visible = false
+	$Undo.visible = true
 	started = true
 	startTime = OS.get_unix_time()
 	processedFrame = -1
 	loadLevel("Level" + str(level))
+	var tut = $Level.get_node("Tutorial")
+	if tut:
+		tut.visible = false
 	update()
+	
+
+func _on_Undo_pressed():
+	reset(false, false)
 
 func loadLevel(lvl):
 	var world = get_tree().get_root().get_node("World")
@@ -204,21 +215,26 @@ func _process(delta):
 				enemyCount = enemyCount + 1
 					
 	if enemyCount == 0 or playerCount == 0:
-		started = false
-		for line in lines:
-			remove_child(line.obj)
-			line.obj.queue_free()
-		lines.clear()
-		for energy in energies:
-			energy.queue_free()
-		energies.clear()
-		if enemyCount == 0:
-			$Sieg.visible = true
-			$Weiter.visible = true
-		else:
+		reset(enemyCount == 0, playerCount == 0)
+
+func reset(won, lost):
+	started = false
+	for line in lines:
+		remove_child(line.obj)
+		line.obj.queue_free()
+	lines.clear()
+	for energy in energies:
+		energy.queue_free()
+	energies.clear()
+	if won:
+		$Sieg.visible = true
+		$Weiter.visible = true
+	else:
+		if lost:
 			$Niederlage.visible = true
-			$NochMal.visible = true
-		
+		$NochMal.visible = true
+	$Undo.visible = false
+	
 func sendEnergy(line):
 	var energy = load("res://Energy.tscn")
 	var obj = energy.instance()
@@ -303,3 +319,4 @@ class Line:
 		to = t
 		color = c
 		obj = o
+

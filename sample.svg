@@ -11,6 +11,7 @@
    sodipodi:docname="sample.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
@@ -23,9 +24,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="6.4775599"
-     inkscape:cx="205.32423"
-     inkscape:cy="332.45543"
+     inkscape:zoom="1.1450816"
+     inkscape:cx="205.22554"
+     inkscape:cy="332.29072"
      inkscape:window-width="1848"
      inkscape:window-height="1016"
      inkscape:window-x="72"
@@ -137,6 +138,84 @@
          d="M 0,1643 H 5000 V 0 H 0 Z"
          id="path1161-7" />
     </clipPath>
+    <linearGradient
+       id="a">
+      <stop
+         stop-color="#fff"
+         offset="0"
+         id="stop21438" />
+      <stop
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="1"
+         id="stop21440" />
+    </linearGradient>
+    <linearGradient
+       id="e"
+       x1="26.5"
+       x2="26.25"
+       y1="34.25"
+       y2="43.572"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#edd400"
+         offset="0"
+         id="stop21443" />
+      <stop
+         stop-color="#edd400"
+         stop-opacity="0"
+         offset="1"
+         id="stop21445" />
+    </linearGradient>
+    <linearGradient
+       id="d"
+       x1="26.5"
+       x2="26.25"
+       y1="34.25"
+       y2="43.572"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#c4a000"
+         offset="0"
+         id="stop21448" />
+      <stop
+         stop-color="#c4a000"
+         stop-opacity="0"
+         offset="1"
+         id="stop21450" />
+    </linearGradient>
+    <linearGradient
+       id="f"
+       x1="17.061"
+       x2="12.624"
+       y1="11.395"
+       y2="12.584"
+       gradientTransform="matrix(0,-1.1719,-1.1719,0,46.174,54.101)"
+       gradientUnits="userSpaceOnUse"
+       xlink:href="#a" />
+    <radialGradient
+       id="b"
+       cx="24.837"
+       cy="36.421"
+       r="15.645"
+       gradientTransform="matrix(1,0,0,0.53672,0,16.873)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         id="stop21454" />
+      <stop
+         stop-opacity="0"
+         offset="1"
+         id="stop21456" />
+    </radialGradient>
+    <radialGradient
+       id="c"
+       cx="15.094"
+       cy="13.283"
+       r="10.165"
+       gradientTransform="matrix(2.496,0,0,2.3007,-25.124,-17.826)"
+       gradientUnits="userSpaceOnUse"
+       xlink:href="#a" />
   </defs>
   <g
      inkscape:label="Ebene 1"
@@ -1189,5 +1268,43 @@
        height="6.4591961"
        x="212.67702"
        y="347.8089" />
+    <g
+       id="g21492"
+       transform="translate(358.34573,334.43133)"
+       inkscape:export-filename="/home/art/SourceCode/CancerWar/undo.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <path
+         transform="matrix(-1.4897,0,0,-1.0012,60.604,75.313)"
+         d="m 40.482,36.421 a 15.645,8.3969 0 1 1 -31.289,0 15.645,8.3969 0 1 1 31.289,0 z"
+         fill="url(#b)"
+         fill-rule="evenodd"
+         opacity="0.14118"
+         id="path21462"
+         style="fill:url(#b)" />
+      <path
+         d="m 9.5824,45.034 c 40.026,1.3211 33.7,-32.741 12.88,-32.537 V 3.1216 l -16.648,14.587 16.648,15.298 v -9.6684 c 14.063,-0.58597 18.178,21.433 -12.88,21.696 z"
+         display="block"
+         fill="url(#e)"
+         stroke="url(#d)"
+         id="path21464"
+         style="fill:url(#e);stroke:url(#d)" />
+      <path
+         d="M 31.032,39.316 C 42.755,33.2364 39.2198,13.088 21.4484,13.55 V 5.4509 l -14.048,12.264 14.048,12.944 v -8.2776 c 14.84,-0.34827 14.16,12.758 9.5836,16.935 z"
+         display="block"
+         fill="none"
+         opacity="0.69886"
+         stroke="url(#f)"
+         stroke-miterlimit="10"
+         id="path21466"
+         style="stroke:url(#f)" />
+      <path
+         d="m 6.6291,17.683 5.6568,5.3917 c 6.2756,-0.17678 3.4472,-6.364 14.672,-9.4576 l -4.9498,-0.61872 -0.08839,-8.6621 -15.291,13.347 z"
+         fill="url(#c)"
+         fill-rule="evenodd"
+         opacity="0.51136"
+         id="path21468"
+         style="fill:url(#c)" />
+    </g>
   </g>
 </svg>

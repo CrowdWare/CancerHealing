@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://world.gd" type="Script" id=1]
 [ext_resource path="res://niederlage.png" type="Texture" id=2]
 [ext_resource path="res://Redkost Comic.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://sieg.png" type="Texture" id=4]
+[ext_resource path="res://undo.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 58
@@ -28,7 +29,7 @@ margin_top = 1192.0
 margin_right = 526.0
 margin_bottom = 1324.0
 custom_fonts/font = SubResource( 1 )
-text = "Starten"
+text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -81,6 +82,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Undo" type="TextureButton" parent="."]
+visible = false
+margin_left = 630.0
+margin_top = 38.0
+margin_right = 677.0
+margin_bottom = 83.0
+texture_normal = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="StartButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Weiter" to="." method="_on_Weiter_pressed"]
 [connection signal="pressed" from="NochMal" to="." method="_on_NochMal_pressed"]
+[connection signal="pressed" from="Undo" to="." method="_on_Undo_pressed"]
