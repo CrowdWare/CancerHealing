@@ -1,33 +1,42 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Cell.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Tutorial1/tutorial1_3.png" type="Texture" id=2]
-[ext_resource path="res://Tutorial1/tutorial1_2.png" type="Texture" id=3]
-[ext_resource path="res://Tutorial1/tutorial1_4.png" type="Texture" id=4]
-[ext_resource path="res://Tutorial1/tutorial1_6.png" type="Texture" id=5]
-[ext_resource path="res://Tutorial1/tutorial1_5.png" type="Texture" id=6]
-[ext_resource path="res://Tutorial1/tutorial1_1.png" type="Texture" id=7]
+[ext_resource path="res://hand.png" type="Texture" id=8]
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends Node2D
-	
-var hasTutorial = true
 
-func playTutorial():
-	$AnimatedSprite.play()
+var startTime = 0
+var elapsed = 0
+
+const SPEED = 300
+func _ready():
+	startTime = OS.get_unix_time()
+	resetHandPos()
 	
-func stopTutorial():
-	$AnimatedSprite.stop()
-	$AnimatedSprite.visible = false
+func resetHandPos():
+	var pos = $Cell2.position
+	pos.x = pos.x + 40
+	pos.y = pos.y + 40
+	$Hand.position = pos
+	elapsed = 0
+	startTime = OS.get_unix_time()
+
+func _process(delta):
+	var curTime = OS.get_unix_time()
+	var elapsed = curTime - startTime
+	
+	if $Hand.visible:
+		var target = $Cell1
+		var targetPos = target.position
+		targetPos.x = targetPos.x + 40
+		targetPos.y = targetPos.y + 40
+		var pos = $Hand.position.move_toward(targetPos, delta * SPEED)
+
+		$Hand.position = pos
+		if elapsed > 2:
+			resetHandPos()
 "
-
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
 
 [node name="Node2D" type="Node2D"]
 script = SubResource( 2 )
@@ -41,6 +50,8 @@ typ = 1
 position = Vector2( 357, 567 )
 count = 5
 
-[node name="Tutorial" type="AnimatedSprite" parent="."]
-position = Vector2( 379, 294 )
-frames = SubResource( 3 )
+[node name="Hand" type="Sprite" parent="."]
+visible = false
+position = Vector2( 406, 851 )
+z_index = 2
+texture = ExtResource( 8 )

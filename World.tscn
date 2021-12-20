@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://world.gd" type="Script" id=1]
 [ext_resource path="res://niederlage.png" type="Texture" id=2]
@@ -6,13 +6,29 @@
 [ext_resource path="res://sieg.png" type="Texture" id=4]
 [ext_resource path="res://undo.png" type="Texture" id=5]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=4]
 size = 58
+outline_size = 2
+outline_color = Color( 0.0313726, 0.0313726, 0.0313726, 1 )
 font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.168627, 0.788235, 0.0627451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.168627, 0.788235, 0.0627451, 1 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 58
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.168627, 0.788235, 0.0627451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.168627, 0.788235, 0.0627451, 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 33
@@ -28,7 +44,9 @@ margin_left = 200.0
 margin_top = 1192.0
 margin_right = 526.0
 margin_bottom = 1324.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 8 )
+custom_styles/normal = SubResource( 5 )
 text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -47,6 +65,7 @@ margin_top = 1195.0
 margin_right = 526.0
 margin_bottom = 1327.0
 custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 6 )
 text = "WEITER"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -59,6 +78,7 @@ margin_top = 1195.0
 margin_right = 526.0
 margin_bottom = 1327.0
 custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 7 )
 text = "NOCH MAL"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -75,7 +95,7 @@ margin_left = 42.0
 margin_top = 40.0
 margin_right = 84.0
 margin_bottom = 54.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.764706, 0.713726, 0.713726, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "0 FPS"
 __meta__ = {

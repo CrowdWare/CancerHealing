@@ -27,7 +27,7 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="1.7106392"
-     inkscape:cx="210.44765"
+     inkscape:cx="210.15536"
      inkscape:cy="220.67774"
      inkscape:window-width="1848"
      inkscape:window-height="1016"
@@ -41,45 +41,52 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       style="fill:#0d99ed;stroke-width:0.793;fill-opacity:1"
+       id="rect2152"
+       width="432"
+       height="432"
+       x="0.65490156"
+       y="0.20062716" />
     <ellipse
-       style="fill:#0000ff;stroke:#000000;stroke-width:4.54017;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#0000ff;stroke:#000000;stroke-width:3.94139;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path904"
-       cx="211.58574"
-       cy="216.76601"
-       rx="142.18086"
-       ry="113.51666" />
+       cx="214.53494"
+       cy="211.49556"
+       rx="123.42945"
+       ry="98.545609" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:108.654px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.56873;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="135.10835"
-       y="241.32603"
+       style="font-style:normal;font-weight:normal;font-size:94.3242px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.36184;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="148.14371"
+       y="232.81651"
        id="text2220"><tspan
          sodipodi:role="line"
          id="tspan2218"
-         x="135.10835"
-         y="241.32603"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;stroke:#000000;stroke-width:1.56873;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">64</tspan></text>
+         x="148.14371"
+         y="232.81651"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;stroke:#000000;stroke-width:1.36184;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">64</tspan></text>
     <ellipse
-       style="fill:#ffffff;stroke:#000000;stroke-width:1.71758;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.49106;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path7310"
-       cx="205.83304"
-       cy="290.04395"
-       rx="11.826154"
-       ry="11.203836" />
+       cx="209.54092"
+       cy="275.10928"
+       rx="10.266471"
+       ry="9.7262268" />
     <ellipse
-       style="fill:#ffffff;stroke:#000000;stroke-width:1.71758;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.49106;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path7310-3"
-       cx="241.36639"
-       cy="-290.04395"
-       rx="11.826154"
-       ry="11.203836"
+       cx="240.388"
+       cy="-275.10928"
+       rx="10.266471"
+       ry="9.7262268"
        transform="scale(1,-1)" />
     <ellipse
-       style="fill:#ffffff;stroke:#000000;stroke-width:1.71758;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.49106;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path7310-6"
-       cx="169.58867"
-       cy="290.04395"
-       rx="11.826154"
-       ry="11.203836" />
+       cx="178.07661"
+       cy="275.10928"
+       rx="10.266471"
+       ry="9.7262268" />
   </g>
 </svg>

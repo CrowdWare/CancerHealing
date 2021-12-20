@@ -22,9 +22,9 @@ const MAX_LEVEL_COUNT = 6
 func _ready():
 	print("Hello world")
 	loadLevel("Level" + str(level))
-	var tut = $Level.get_node("Tutorial")
-	if tut:
-		tut.play()
+	var hand = $Level.get_node("Hand")
+	if hand:
+		hand.visible = true
 
 func setDragTo(object):
 	drag_to = object
@@ -64,12 +64,18 @@ func drop(from, to):
 	lines.append(line)
 	update()
 
+func addLine(line_obj, from, to):
+	add_child(line_obj)
+	var line = Line.new(line_obj, from, to, Color(0, 0, 255))
+	from.channels = from.channels + 1
+	lines.append(line)
+	
 func _on_Button_pressed():
 	# starten
-	var tut = $Level.get_node("Tutorial")
-	if tut:
-		tut.visible = false
-		tut.stop()
+	var hand = $Level.get_node("Hand")
+	if hand:
+		hand.visible = false
+
 	$StartButton.visible = false
 	$Undo.visible = true
 	started = true
@@ -86,9 +92,6 @@ func _on_Weiter_pressed():
 		level = 1
 	loadLevel("Level" + str(level))
 	$StartButton.visible = true
-	var tut = $Level.get_node("Tutorial")
-	if tut:
-		tut.play()
 	update()
 
 func _on_NochMal_pressed():
@@ -100,9 +103,6 @@ func _on_NochMal_pressed():
 	startTime = OS.get_unix_time()
 	processedFrame = -1
 	loadLevel("Level" + str(level))
-	var tut = $Level.get_node("Tutorial")
-	if tut:
-		tut.visible = false
 	update()
 	
 
