@@ -8,7 +8,7 @@ var started = false
 var startTime = 0
 var processedFrame = -1
 var swipe_start = null
-var level = 4
+var level = 1
 
 const SPEED = 150
 const MAX_LEVEL_COUNT = 5
@@ -65,17 +65,19 @@ func drop(from, to):
 	update()
 
 func _on_Button_pressed():
+	# starten
 	var tut = $Level.get_node("Tutorial")
 	if tut:
+		tut.visible = false
 		tut.stop()
 	$StartButton.visible = false
 	started = true
 	startTime = OS.get_unix_time()
 
 func _on_Weiter_pressed():
+	# nächsten Level laden	
 	$Weiter.visible = false
 	$Sieg.visible = false
-	# nächsten Level laden	
 	started = true
 	startTime = OS.get_unix_time()
 	processedFrame = -1
@@ -87,6 +89,7 @@ func _on_Weiter_pressed():
 	update()
 
 func _on_NochMal_pressed():
+	# level noch mal starten
 	$NochMal.visible = false
 	$Niederlage.visible = false
 	started = true

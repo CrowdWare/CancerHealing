@@ -39,14 +39,8 @@ position = Vector2( 129, 409 )
 count = 5
 typ = 2
 
-[node name="Cell2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 151, 923 )
-count = 15
-typ = 1
-isSun = true
-
 [node name="Cell11" parent="." instance=ExtResource( 1 )]
-position = Vector2( 151, 923 )
+position = Vector2( 168, 943 )
 count = 15
 typ = 1
 isSun = true
