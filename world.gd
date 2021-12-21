@@ -11,11 +11,13 @@ var swipe_start = null
 var level = 1
 
 const SPEED = 150
-const MAX_LEVEL_COUNT = 6
+const MAX_LEVEL_COUNT = 7
+
 
 ######
 ##
-##  TODO: Goldhaufen, Wachtürme
+##  TODO: Goldhaufen, Wachtürme, 
+##  zweifarbige Linen bei Gegenangriff
 ##
 ######
 
@@ -88,10 +90,12 @@ func _on_Weiter_pressed():
 	processedFrame = -1
 	if level < MAX_LEVEL_COUNT:
 		level = level + 1
-	else:
-		level = 1
 	loadLevel("Level" + str(level))
-	$StartButton.visible = true
+	var hand = $Level.get_node("Hand")
+	if hand:
+		hand.visible = true
+	if level < MAX_LEVEL_COUNT:
+		$StartButton.visible = true
 	update()
 
 func _on_NochMal_pressed():

@@ -27,7 +27,6 @@ func _ready():
 	
 func resetHandPos():
 	$Hand.position = Vector2(466, 795)
-	$Hand.visible = true
 	elapsed = 0
 	startTime = OS.get_unix_time()
 
