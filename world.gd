@@ -8,7 +8,7 @@ var started = false
 var startTime = 0
 var processedFrame = -1
 var swipe_start = null
-var level = 1
+var level = 6
 
 const SPEED = 150
 const MAX_LEVEL_COUNT = 7
@@ -27,6 +27,7 @@ func _ready():
 	var hand = $Level.get_node("Hand")
 	if hand:
 		hand.visible = true
+	$StartButton.visible = true
 
 func setDragTo(object):
 	drag_to = object
@@ -43,19 +44,24 @@ func getDragFrom():
 func drop(from, to):
 	if not started:
 		return
+	addLine(from, to)
 
+func addLine(from, to):
 	# erst mal prüfen, ob line schon besteht
 	if isAttacking(from, to) or isSupporting(from, to):
 		return
 
 	# line war schon da, allerdings in umgekehrter Reihenfolge
+	var linesToDelete = []
 	for line in lines:
-		if line.from == to and line.to == from:
+		if line.from == to and line.to == from and line.from.typ == line.to.typ:
 			line.from.channels = line.from.channels - 1
-			lines.erase(line)
+			linesToDelete.append(line)
 			remove_child(line.obj)
 			line.obj.queue_free()
 			update()
+	for line in linesToDelete:
+		lines.erase(line)
 			
 	var line_obj = Line2D.new()
 	line_obj.add_point(from.position)
@@ -65,12 +71,6 @@ func drop(from, to):
 	from.channels = from.channels + 1
 	lines.append(line)
 	update()
-
-func addLine(line_obj, from, to):
-	add_child(line_obj)
-	var line = Line.new(line_obj, from, to, Color(0, 0, 255))
-	from.channels = from.channels + 1
-	lines.append(line)
 	
 func _on_Button_pressed():
 	# starten
@@ -116,9 +116,9 @@ func _on_Undo_pressed():
 func loadLevel(lvl):
 	var world = get_tree().get_root().get_node("World")
 	var scene = load("res://" + lvl + ".tscn")
-	var level = world.get_node("Level")
-	world.remove_child(level)
-	level.call_deferred("free")
+	var l = world.get_node("Level")
+	world.remove_child(l)
+	l.call_deferred("free")
 	var levelInstance = scene.instance() 
 	levelInstance.set_name("Level")
 	world.add_child(levelInstance)
@@ -154,14 +154,15 @@ func _process(delta):
 					# enemy hat noch min. einen gate frei, mit dem er andocken kann
 					var target = findNextTarget(child)
 					if target:
-						var line_obj = Line2D.new()
-						line_obj.add_point(child.position)
-						line_obj.add_point(target.position)
-						var line = Line.new(line_obj, child, target, Color(255, 0, 0))
-						child.channels = child.channels + 1
-						add_child(line_obj)
-						lines.append(line)
-						update()
+						addLine(child,  target)
+						#var line_obj = Line2D.new()
+						#line_obj.add_point(child.position)
+						#line_obj.add_point(target.position)
+						#var line = Line.new(line_obj, child, target, Color(255, 0, 0))
+						#child.channels = child.channels + 1
+						#add_child(line_obj)
+						#lines.append(line)
+						#update()
 	
 	# alle cellen schicken pro Sekunde eine neue energy los
 	if elapsed > processedFrame:
@@ -186,6 +187,7 @@ func _process(delta):
 			energy.queue_free()
 			energies.erase(test)
 			test.queue_free()
+			return
 		
 		# ziel fast erreicht, dann energy wieder löschen
 		if Geometry.is_point_in_circle(pos, energy.target.position, 50):
@@ -200,14 +202,15 @@ func _process(delta):
 			else:
 				energy.target.count = energy.target.count - 1
 				if energy.target.count < 0:
+					# Übernahme
 					energy.target.typ = energy.source_typ
 					energy.target.count = 1
 					deleteLines(energy.target)
-					update()
 			energies.erase(energy)
 			energy.queue_free()
 		else:
 			energy.position = pos
+		update()
 			
 	var enemyCount = 0
 	var playerCount = 0
@@ -252,13 +255,16 @@ func sendEnergy(line):
 	return obj
 
 func deleteLines(cell):
+	var linesToDelete = []
 	for line in lines:
 		if line.from == cell:
 			line.from.channels = line.from.channels - 1
-			lines.erase(line)
+			linesToDelete.append(line)
 			remove_child(line.obj)
 			line.obj.queue_free()
-			update()
+	for line in linesToDelete:
+		lines.erase(line)
+	update()
 	
 func checkCollision(en):
 	for energy in energies:

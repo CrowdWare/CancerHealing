@@ -25,8 +25,8 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="1.1450816"
-     inkscape:cx="205.22554"
-     inkscape:cy="332.29072"
+     inkscape:cx="331.85408"
+     inkscape:cy="1191.6181"
      inkscape:window-width="1848"
      inkscape:window-height="1016"
      inkscape:window-x="72"
@@ -216,6 +216,78 @@
        gradientTransform="matrix(2.496,0,0,2.3007,-25.124,-17.826)"
        gradientUnits="userSpaceOnUse"
        xlink:href="#a" />
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter1707"
+       x="-0.021797251"
+       y="-0.07446946"
+       width="1.0577224"
+       height="1.1972062">
+      <feFlood
+         flood-opacity="0.576471"
+         flood-color="rgb(0,24,37)"
+         result="flood"
+         id="feFlood1697" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite1699" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="4.5"
+         result="blur"
+         id="feGaussianBlur1701" />
+      <feOffset
+         dx="7"
+         dy="7"
+         result="offset"
+         id="feOffset1703" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite1705" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter1768"
+       x="-0.021797251"
+       y="-0.07446946"
+       width="1.0577224"
+       height="1.1972062">
+      <feFlood
+         flood-opacity="0.576471"
+         flood-color="rgb(0,24,37)"
+         result="flood"
+         id="feFlood1758" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite1760" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="4.5"
+         result="blur"
+         id="feGaussianBlur1762" />
+      <feOffset
+         dx="7"
+         dy="7"
+         result="offset"
+         id="feOffset1764" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite1766" />
+    </filter>
   </defs>
   <g
      inkscape:label="Ebene 1"
@@ -965,249 +1037,263 @@
          inkscape:export-ydpi="96" />
     </g>
     <g
-       id="g1083"
-       inkscape:label="ribbon-2410588"
-       transform="matrix(0.10434484,0,0,-0.10434484,151.47262,1288.8863)"
-       inkscape:export-filename="/home/art/SourceCode/First2D/sieg.png"
+       id="g1695"
+       style="filter:url(#filter1707)"
+       inkscape:export-filename="/home/art/SourceCode/CancerWar/sieg.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96">
       <g
-         id="g1085">
+         id="g1083"
+         inkscape:label="ribbon-2410588"
+         transform="matrix(0.10434484,0,0,-0.10434484,151.47262,1288.8863)"
+         inkscape:export-filename="/home/art/SourceCode/First2D/sieg.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
         <g
-           id="g1087"
-           clip-path="url(#clipPath1091)">
+           id="g1085">
           <g
-             id="g1093">
+             id="g1087"
+             clip-path="url(#clipPath1091)">
             <g
-               id="g1095" />
-            <g
-               id="g1103">
+               id="g1093">
               <g
-                 clip-path="url(#clipPath1099)"
-                 opacity="0"
-                 id="g1101" />
-            </g>
-          </g>
-        </g>
-      </g>
-      <g
-         id="g1105">
-        <g
-           id="g1107">
-          <g
-             id="g1113">
-            <g
-               id="g1115">
-              <path
-                 d="m 3707.493,347.87 c 302.045,-59.941 600.708,-142.603 893.422,-247.986 v 0 c 9.221,139.865 15.974,280.232 20.25,421.034 v 0 c 82.234,114.37 166.761,227.558 253.558,339.492 v 0 c -330.873,119.123 -668.469,212.56 -1009.889,280.314 v 0 C 3812.386,876.44 3759.94,612.154 3707.493,347.87"
-                 style="fill:url(#linearGradient1121);stroke:none"
-                 id="path1123" />
-            </g>
-          </g>
-        </g>
-      </g>
-      <g
-         id="g1125">
-        <g
-           id="g1127"
-           clip-path="url(#clipPath1131)">
-          <g
-             id="g1133"
-             transform="translate(3749.0046,557.5742)">
-            <path
-               d="m 0,0 c -13.859,-69.839 -27.716,-139.678 -41.575,-209.517 164.996,40.258 334.382,73.794 507.728,100.018 C 311.836,-67.112 156.34,-30.614 0,0"
-               style="fill:#8a0700;fill-opacity:1;fill-rule:nonzero;stroke:none"
-               id="path1135" />
-          </g>
-        </g>
-      </g>
-      <g
-         id="g1137">
-        <g
-           id="g1139">
-          <g
-             id="g1145">
-            <g
-               id="g1147">
-              <path
-                 d="M 126.282,860.41 C 213.079,748.476 297.605,635.288 379.84,520.918 v 0 c 4.275,-140.802 11.029,-281.169 20.248,-421.034 v 0 c 292.715,105.383 591.378,188.045 893.423,247.986 v 0 c -52.445,264.284 -104.894,528.57 -157.341,792.854 v 0 C 794.75,1072.97 457.154,979.533 126.282,860.41"
-                 style="fill:url(#linearGradient1153);stroke:none"
-                 id="path1155" />
-            </g>
-          </g>
-        </g>
-      </g>
-      <g
-         id="g1157">
-        <g
-           id="g1159"
-           clip-path="url(#clipPath1163)">
-          <g
-             id="g1165"
-             transform="translate(1251.9994,557.5742)">
-            <path
-               d="m 0,0 c 13.858,-69.839 27.716,-139.678 41.575,-209.517 -164.995,40.258 -334.382,73.794 -507.729,100.018 C -311.837,-67.112 -156.342,-30.614 0,0"
-               style="fill:#8a0700;fill-opacity:1;fill-rule:nonzero;stroke:none"
-               id="path1167" />
-          </g>
-          <g
-             id="g1169"
-             transform="translate(4214.3188,448.308)">
-            <path
-               d="m 0,0 c -1121.278,310.844 -2306.356,310.844 -3427.633,0 -71.975,259.647 -143.95,519.294 -215.925,778.942 1262.548,350.007 2596.934,350.007 3859.482,0 C 143.95,519.294 71.975,259.647 0,0"
-               style="fill:#e2231a;fill-opacity:1;fill-rule:nonzero;stroke:none"
-               id="path1171" />
-          </g>
-        </g>
-      </g>
-    </g>
-    <g
-       id="g1083-0"
-       inkscape:label="ribbon-2410588"
-       transform="matrix(-0.10434484,0,0,0.10434484,713.89673,1284.0318)"
-       inkscape:export-filename="/home/art/SourceCode/CancerWar/niederlage.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96"
-       style="fill:#6c5353">
-      <g
-         id="g1085-9"
-         style="fill:#6c5353">
-        <g
-           id="g1087-3"
-           clip-path="url(#clipPath1091-3)"
-           style="fill:#6c5353">
-          <g
-             id="g1093-6"
-             style="fill:#6c5353">
-            <g
-               id="g1095-0"
-               style="fill:#6c5353" />
-            <g
-               id="g1103-6"
-               style="fill:#6c5353">
+                 id="g1095" />
               <g
-                 clip-path="url(#clipPath1099-7)"
-                 opacity="0"
-                 id="g1101-2"
-                 style="fill:#6c5353" />
+                 id="g1103">
+                <g
+                   clip-path="url(#clipPath1099)"
+                   opacity="0"
+                   id="g1101" />
+              </g>
             </g>
           </g>
         </g>
-      </g>
-      <g
-         id="g1105-6"
-         style="fill:#6c5353">
         <g
-           id="g1107-1"
-           style="fill:#6c5353">
+           id="g1105">
           <g
-             id="g1113-8"
-             style="fill:#6c5353">
+             id="g1107">
             <g
-               id="g1115-7"
-               style="fill:#6c5353">
-              <path
-                 d="m 3707.493,347.87 c 302.045,-59.941 600.708,-142.603 893.422,-247.986 v 0 c 9.221,139.865 15.974,280.232 20.25,421.034 v 0 c 82.234,114.37 166.761,227.558 253.558,339.492 v 0 c -330.873,119.123 -668.469,212.56 -1009.889,280.314 v 0 C 3812.386,876.44 3759.94,612.154 3707.493,347.87"
-                 style="fill:#6c5353;stroke:none"
-                 id="path1123-9" />
+               id="g1113">
+              <g
+                 id="g1115">
+                <path
+                   d="m 3707.493,347.87 c 302.045,-59.941 600.708,-142.603 893.422,-247.986 v 0 c 9.221,139.865 15.974,280.232 20.25,421.034 v 0 c 82.234,114.37 166.761,227.558 253.558,339.492 v 0 c -330.873,119.123 -668.469,212.56 -1009.889,280.314 v 0 C 3812.386,876.44 3759.94,612.154 3707.493,347.87"
+                   style="fill:url(#linearGradient1121);stroke:none"
+                   id="path1123" />
+              </g>
             </g>
           </g>
         </g>
-      </g>
-      <g
-         id="g1125-2"
-         style="fill:#6c5353">
         <g
-           id="g1127-0"
-           clip-path="url(#clipPath1131-6)"
-           style="fill:#6c5353">
+           id="g1125">
           <g
-             id="g1133-2"
-             transform="translate(3749.0046,557.5742)"
-             style="fill:#6c5353">
-            <path
-               d="m 0,0 c -13.859,-69.839 -27.716,-139.678 -41.575,-209.517 164.996,40.258 334.382,73.794 507.728,100.018 C 311.836,-67.112 156.34,-30.614 0,0"
-               style="fill:#6c5353;fill-opacity:1;fill-rule:nonzero;stroke:none"
-               id="path1135-3" />
-          </g>
-        </g>
-      </g>
-      <g
-         id="g1137-7"
-         style="fill:#6c5353">
-        <g
-           id="g1139-5"
-           style="fill:#6c5353">
-          <g
-             id="g1145-9"
-             style="fill:#6c5353">
+             id="g1127"
+             clip-path="url(#clipPath1131)">
             <g
-               id="g1147-2"
-               style="fill:#6c5353">
+               id="g1133"
+               transform="translate(3749.0046,557.5742)">
               <path
-                 d="M 126.282,860.41 C 213.079,748.476 297.605,635.288 379.84,520.918 v 0 c 4.275,-140.802 11.029,-281.169 20.248,-421.034 v 0 c 292.715,105.383 591.378,188.045 893.423,247.986 v 0 c -52.445,264.284 -104.894,528.57 -157.341,792.854 v 0 C 794.75,1072.97 457.154,979.533 126.282,860.41"
-                 style="fill:#6c5353;stroke:none"
-                 id="path1155-2" />
+                 d="m 0,0 c -13.859,-69.839 -27.716,-139.678 -41.575,-209.517 164.996,40.258 334.382,73.794 507.728,100.018 C 311.836,-67.112 156.34,-30.614 0,0"
+                 style="fill:#8a0700;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1135" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="g1137">
+          <g
+             id="g1139">
+            <g
+               id="g1145">
+              <g
+                 id="g1147">
+                <path
+                   d="M 126.282,860.41 C 213.079,748.476 297.605,635.288 379.84,520.918 v 0 c 4.275,-140.802 11.029,-281.169 20.248,-421.034 v 0 c 292.715,105.383 591.378,188.045 893.423,247.986 v 0 c -52.445,264.284 -104.894,528.57 -157.341,792.854 v 0 C 794.75,1072.97 457.154,979.533 126.282,860.41"
+                   style="fill:url(#linearGradient1153);stroke:none"
+                   id="path1155" />
+              </g>
+            </g>
+          </g>
+        </g>
+        <g
+           id="g1157">
+          <g
+             id="g1159"
+             clip-path="url(#clipPath1163)">
+            <g
+               id="g1165"
+               transform="translate(1251.9994,557.5742)">
+              <path
+                 d="m 0,0 c 13.858,-69.839 27.716,-139.678 41.575,-209.517 -164.995,40.258 -334.382,73.794 -507.729,100.018 C -311.837,-67.112 -156.342,-30.614 0,0"
+                 style="fill:#8a0700;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1167" />
+            </g>
+            <g
+               id="g1169"
+               transform="translate(4214.3188,448.308)">
+              <path
+                 d="m 0,0 c -1121.278,310.844 -2306.356,310.844 -3427.633,0 -71.975,259.647 -143.95,519.294 -215.925,778.942 1262.548,350.007 2596.934,350.007 3859.482,0 C 143.95,519.294 71.975,259.647 0,0"
+                 style="fill:#e2231a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1171" />
             </g>
           </g>
         </g>
       </g>
-      <g
-         id="g1157-8"
-         style="fill:#6c5353">
-        <g
-           id="g1159-9"
-           clip-path="url(#clipPath1163-2)"
-           style="fill:#6c5353">
-          <g
-             id="g1165-7"
-             transform="translate(1251.9994,557.5742)"
-             style="fill:#6c5353">
-            <path
-               d="m 0,0 c 13.858,-69.839 27.716,-139.678 41.575,-209.517 -164.995,40.258 -334.382,73.794 -507.729,100.018 C -311.837,-67.112 -156.342,-30.614 0,0"
-               style="fill:#6c5353;fill-opacity:1;fill-rule:nonzero;stroke:none"
-               id="path1167-3" />
-          </g>
-          <g
-             id="g1169-6"
-             transform="translate(4214.3188,448.308)"
-             style="fill:#6c5353">
-            <path
-               d="m 0,0 c -1121.278,310.844 -2306.356,310.844 -3427.633,0 -71.975,259.647 -143.95,519.294 -215.925,778.942 1262.548,350.007 2596.934,350.007 3859.482,0 C 143.95,519.294 71.975,259.647 0,0"
-               style="fill:#6c5353;fill-opacity:1;fill-rule:nonzero;stroke:none"
-               id="path1171-1" />
-          </g>
-        </g>
-      </g>
-    </g>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
-       x="356.80038"
-       y="1187.0223"
-       id="text2852"
-       inkscape:export-filename="/home/art/SourceCode/First2D/sieg.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96"><tspan
-         sodipodi:role="line"
-         id="tspan2850"
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
          x="356.80038"
          y="1187.0223"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#f9f9f9">SIEG</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
-       x="314.04623"
-       y="1406.3823"
-       id="text2852-2"
+         id="text2852"
+         inkscape:export-filename="/home/art/SourceCode/First2D/sieg.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan2850"
+           x="356.80038"
+           y="1187.0223"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#f9f9f9">SIEG</tspan></text>
+    </g>
+    <g
+       id="g1756"
+       style="filter:url(#filter1768)"
        inkscape:export-filename="/home/art/SourceCode/CancerWar/niederlage.png"
        inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96"><tspan
-         sodipodi:role="line"
-         id="tspan2850-9"
+       inkscape:export-ydpi="96">
+      <g
+         id="g1083-0"
+         inkscape:label="ribbon-2410588"
+         transform="matrix(-0.10434484,0,0,0.10434484,713.89673,1284.0318)"
+         inkscape:export-filename="/home/art/SourceCode/CancerWar/niederlage.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         style="fill:#6c5353">
+        <g
+           id="g1085-9"
+           style="fill:#6c5353">
+          <g
+             id="g1087-3"
+             clip-path="url(#clipPath1091-3)"
+             style="fill:#6c5353">
+            <g
+               id="g1093-6"
+               style="fill:#6c5353">
+              <g
+                 id="g1095-0"
+                 style="fill:#6c5353" />
+              <g
+                 id="g1103-6"
+                 style="fill:#6c5353">
+                <g
+                   clip-path="url(#clipPath1099-7)"
+                   opacity="0"
+                   id="g1101-2"
+                   style="fill:#6c5353" />
+              </g>
+            </g>
+          </g>
+        </g>
+        <g
+           id="g1105-6"
+           style="fill:#6c5353">
+          <g
+             id="g1107-1"
+             style="fill:#6c5353">
+            <g
+               id="g1113-8"
+               style="fill:#6c5353">
+              <g
+                 id="g1115-7"
+                 style="fill:#6c5353">
+                <path
+                   d="m 3707.493,347.87 c 302.045,-59.941 600.708,-142.603 893.422,-247.986 v 0 c 9.221,139.865 15.974,280.232 20.25,421.034 v 0 c 82.234,114.37 166.761,227.558 253.558,339.492 v 0 c -330.873,119.123 -668.469,212.56 -1009.889,280.314 v 0 C 3812.386,876.44 3759.94,612.154 3707.493,347.87"
+                   style="fill:#6c5353;stroke:none"
+                   id="path1123-9" />
+              </g>
+            </g>
+          </g>
+        </g>
+        <g
+           id="g1125-2"
+           style="fill:#6c5353">
+          <g
+             id="g1127-0"
+             clip-path="url(#clipPath1131-6)"
+             style="fill:#6c5353">
+            <g
+               id="g1133-2"
+               transform="translate(3749.0046,557.5742)"
+               style="fill:#6c5353">
+              <path
+                 d="m 0,0 c -13.859,-69.839 -27.716,-139.678 -41.575,-209.517 164.996,40.258 334.382,73.794 507.728,100.018 C 311.836,-67.112 156.34,-30.614 0,0"
+                 style="fill:#6c5353;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1135-3" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="g1137-7"
+           style="fill:#6c5353">
+          <g
+             id="g1139-5"
+             style="fill:#6c5353">
+            <g
+               id="g1145-9"
+               style="fill:#6c5353">
+              <g
+                 id="g1147-2"
+                 style="fill:#6c5353">
+                <path
+                   d="M 126.282,860.41 C 213.079,748.476 297.605,635.288 379.84,520.918 v 0 c 4.275,-140.802 11.029,-281.169 20.248,-421.034 v 0 c 292.715,105.383 591.378,188.045 893.423,247.986 v 0 c -52.445,264.284 -104.894,528.57 -157.341,792.854 v 0 C 794.75,1072.97 457.154,979.533 126.282,860.41"
+                   style="fill:#6c5353;stroke:none"
+                   id="path1155-2" />
+              </g>
+            </g>
+          </g>
+        </g>
+        <g
+           id="g1157-8"
+           style="fill:#6c5353">
+          <g
+             id="g1159-9"
+             clip-path="url(#clipPath1163-2)"
+             style="fill:#6c5353">
+            <g
+               id="g1165-7"
+               transform="translate(1251.9994,557.5742)"
+               style="fill:#6c5353">
+              <path
+                 d="m 0,0 c 13.858,-69.839 27.716,-139.678 41.575,-209.517 -164.995,40.258 -334.382,73.794 -507.729,100.018 C -311.837,-67.112 -156.342,-30.614 0,0"
+                 style="fill:#6c5353;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1167-3" />
+            </g>
+            <g
+               id="g1169-6"
+               transform="translate(4214.3188,448.308)"
+               style="fill:#6c5353">
+              <path
+                 d="m 0,0 c -1121.278,310.844 -2306.356,310.844 -3427.633,0 -71.975,259.647 -143.95,519.294 -215.925,778.942 1262.548,350.007 2596.934,350.007 3859.482,0 C 143.95,519.294 71.975,259.647 0,0"
+                 style="fill:#6c5353;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 id="path1171-1" />
+            </g>
+          </g>
+        </g>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
          x="314.04623"
          y="1406.3823"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#f9f9f9">NIEDERLAGE</tspan></text>
+         id="text2852-2"
+         inkscape:export-filename="/home/art/SourceCode/CancerWar/niederlage.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan2850-9"
+           x="314.04623"
+           y="1406.3823"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#f9f9f9">NIEDERLAGE</tspan></text>
+    </g>
     <g
        sodipodi:type="inkscape:box3d"
        id="g1312"
