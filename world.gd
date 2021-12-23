@@ -71,8 +71,11 @@ func addLine(from, to):
 	line_obj.add_point(from.position)
 	line_obj.add_point(to.position)
 	var color = Gradient.new()
-	color.set_color(0, from.getColor())
-	color.set_color(1, to.getColor())
+	var fc = from.getColor()
+	color.set_color(0, fc)
+	# make transparent
+	fc.a = 0
+	color.set_color(1, fc)
 	line_obj.set_gradient(color)
 	add_child(line_obj)
 	var line = Line.new(line_obj, from, to)
@@ -265,7 +268,10 @@ func correctLineColor(cell):
 		if line.from == cell:
 			var color = Gradient.new()
 			color.set_color(0, line.from.getColor())
-			color.set_color(1, line.to.getColor())
+			var tc = line.to.getColor()
+			# make transparent
+			tc.a = 0
+			color.set_color(1, tc)
 			line.obj.set_gradient(color)
 		
 func deleteLines(cell):
