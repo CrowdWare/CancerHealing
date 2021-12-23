@@ -8,10 +8,12 @@ var started = false
 var startTime = 0
 var processedFrame = -1
 var swipe_start = null
-var level = 6
+var level = 1
+var enemy_delay = ENEMY_DELAY
 
 const SPEED = 150
 const MAX_LEVEL_COUNT = 7
+const ENEMY_DELAY = 5
 
 
 ######
@@ -22,7 +24,6 @@ const MAX_LEVEL_COUNT = 7
 ######
 
 func _ready():
-	print("Hello world")
 	loadLevel("Level" + str(level))
 	var hand = $Level.get_node("Hand")
 	if hand:
@@ -41,6 +42,9 @@ func setDragFrom(object):
 func getDragFrom():
 	return drag_from
 	
+func setEnemyDelay(delay):
+	enemy_delay = delay
+
 func drop(from, to):
 	if not started:
 		return
@@ -66,8 +70,12 @@ func addLine(from, to):
 	var line_obj = Line2D.new()
 	line_obj.add_point(from.position)
 	line_obj.add_point(to.position)
+	var color = Gradient.new()
+	color.set_color(0, from.getColor())
+	color.set_color(1, to.getColor())
+	line_obj.set_gradient(color)
 	add_child(line_obj)
-	var line = Line.new(line_obj, from, to, Color(0, 0, 255))
+	var line = Line.new(line_obj, from, to)
 	from.channels = from.channels + 1
 	lines.append(line)
 	update()
@@ -90,6 +98,8 @@ func _on_Weiter_pressed():
 	processedFrame = -1
 	if level < MAX_LEVEL_COUNT:
 		level = level + 1
+	# reset delay to default
+	enemy_delay = ENEMY_DELAY
 	loadLevel("Level" + str(level))
 	var hand = $Level.get_node("Hand")
 	if hand:
@@ -124,6 +134,9 @@ func loadLevel(lvl):
 	world.add_child(levelInstance)
 
 func _input(event):
+	if not started:
+		return
+
 	if event is InputEventMouseButton:
 		if event.pressed:
 			swipe_start = event.position
@@ -147,7 +160,7 @@ func _process(delta):
 	$FPS.set_text(str(Engine.get_frames_per_second()) + " FPS")
 
 	# nach 5 Sekunden werden die Gegner auch aktiv
-	if elapsed > 5 and elapsed > processedFrame:
+	if elapsed > enemy_delay and elapsed > processedFrame:
 		for child in $Level.get_children():
 			if child is StaticBody2D:	
 				if child.typ > 1 and child.openGates() > 0:
@@ -155,14 +168,6 @@ func _process(delta):
 					var target = findNextTarget(child)
 					if target:
 						addLine(child,  target)
-						#var line_obj = Line2D.new()
-						#line_obj.add_point(child.position)
-						#line_obj.add_point(target.position)
-						#var line = Line.new(line_obj, child, target, Color(255, 0, 0))
-						#child.channels = child.channels + 1
-						#add_child(line_obj)
-						#lines.append(line)
-						#update()
 	
 	# alle cellen schicken pro Sekunde eine neue energy los
 	if elapsed > processedFrame:
@@ -206,11 +211,11 @@ func _process(delta):
 					energy.target.typ = energy.source_typ
 					energy.target.count = 1
 					deleteLines(energy.target)
+					correctLineColor(energy.source)
 			energies.erase(energy)
 			energy.queue_free()
 		else:
 			energy.position = pos
-		update()
 			
 	var enemyCount = 0
 	var playerCount = 0
@@ -223,6 +228,7 @@ func _process(delta):
 					
 	if enemyCount == 0 or playerCount == 0:
 		reset(enemyCount == 0, playerCount == 0)
+	update()
 
 func reset(won, lost):
 	started = false
@@ -254,6 +260,14 @@ func sendEnergy(line):
 	energies.append(obj)
 	return obj
 
+func correctLineColor(cell):
+	for line in lines:
+		if line.from == cell:
+			var color = Gradient.new()
+			color.set_color(0, line.from.getColor())
+			color.set_color(1, line.to.getColor())
+			line.obj.set_gradient(color)
+		
 func deleteLines(cell):
 	var linesToDelete = []
 	for line in lines:
@@ -318,15 +332,14 @@ func pathHitsWall(from, to):
 					return true
 	return false
 
+
 class Line:
 	var from
 	var to
-	var color
 	var obj
 
-	func _init(o, f, t, c):
+	func _init(o, f, t):
 		from = f
 		to = t
-		color = c
 		obj = o
 

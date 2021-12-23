@@ -26,6 +26,23 @@ func openGates():
 	else:
 		return 0
 	
+func rgbToFloat(value):
+	return 1.0 / 255 * value
+	
+func getColor():
+	var color
+	if typ == 0:
+		color = Color(rgbToFloat(179), rgbToFloat(179), rgbToFloat(179))
+	elif typ == 1:
+		color = Color(0, 0, 1)
+	elif typ == 2:
+		color = Color(0, 1, 0)
+	elif typ == 3:
+		color = Color(1, 0, 0)
+	elif typ == 4:
+		color = Color(1, rgbToFloat(221), rgbToFloat(85))
+	return color
+
 func setTyp(t):
 	typ = t
 	if typ == 0:
