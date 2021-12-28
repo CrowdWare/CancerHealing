@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="CancerWars"
+config/name="CancerHealing"
 run/main_scene="res://World.tscn"
 boot_splash/image="res://splash.png"
 boot_splash/bg_color=Color( 0.0509804, 0.6, 0.929412, 1 )
