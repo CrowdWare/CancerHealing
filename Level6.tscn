@@ -29,7 +29,7 @@ extends Node2D
 onready var world = get_tree().get_root().get_node(\"World\")
 
 func _ready():
-	world.setEnemyDelay(10)
+	world.setEnemyDelay(1)
 "
 
 [node name="Node2D" type="Node2D"]

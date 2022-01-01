@@ -22,8 +22,7 @@
 ######
 #
 #  BUGS:
-#  - Enemy can go through player
-#  - Line should end with source color and not with target color
+#  
 #
 ######
 
@@ -41,7 +40,7 @@ var level = 6
 var enemy_delay = ENEMY_DELAY
 
 const SPEED = 150
-const MAX_LEVEL_COUNT = 7
+const MAX_LEVEL_COUNT = 8
 const ENEMY_DELAY = 5
 
 
@@ -95,7 +94,7 @@ func addLine(from, to):
 	var color = Gradient.new()
 	var fc = from.getColor()
 	color.set_color(0, fc)
-	# make transparent
+	# make target color transparent
 	fc.a = 0
 	color.set_color(1, fc)
 	line_obj.set_gradient(color)
@@ -199,7 +198,7 @@ func _process(delta):
 		for line in lines:
 			sendEnergy(line)
 			if line.from.isSun:
-				# send a second ebergy if cell is a sun
+				# send a second energy if cell is a sun
 				var energy = sendEnergy(line)
 				# put the position more in front so that the player can see both
 				var pos = energy.position.move_toward(energy.target.position, 0.06 * SPEED)
@@ -321,7 +320,7 @@ func findTargets(cell):
 	for child in $Level.get_children():
 		if child != cell and child is StaticBody2D:
 			if child.typ > -1:
-				if not pathHitsWall(cell, child):
+				if not pathHitsWall(cell, child) and not pathHitsCell(cell, child):
 					targets.append(child)
 	return targets
 	
@@ -357,6 +356,15 @@ func pathHitsWall(from, to):
 				pos.y = pos.y + 16
 				var hit = Geometry.segment_intersects_circle(from.position, to.position, pos, 16)
 				if hit > 0:
+					return true
+	return false
+
+func pathHitsCell(from, to):
+	for child in $Level.get_children():
+		if child is StaticBody2D:
+			if child != from and child!= to:
+				var intersects = Geometry.segment_intersects_circle(from.position, to.position, child.position, 40)
+				if intersects > 0:
 					return true
 	return false
 
