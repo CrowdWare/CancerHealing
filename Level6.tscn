@@ -35,52 +35,32 @@ func _ready():
 [node name="Node2D" type="Node2D"]
 script = SubResource( 1 )
 
-[node name="Cell1" parent="." instance=ExtResource( 1 )]
-position = Vector2( 541, 721 )
+[node name="Cell6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 374, 445 )
+count = 64
+typ = 2
+
+[node name="Cell3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 396, 725 )
 count = 5
 
 [node name="Cell4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 167, 738 )
+position = Vector2( 632, 706 )
 count = 5
+typ = 1
 
 [node name="Cell5" parent="." instance=ExtResource( 1 )]
-position = Vector2( 129, 565 )
+position = Vector2( 171, 706 )
 count = 5
-
-[node name="Cell6" parent="." instance=ExtResource( 1 )]
-position = Vector2( 547, 569 )
-count = 5
+typ = 1
 
 [node name="Cell7" parent="." instance=ExtResource( 1 )]
-position = Vector2( 543, 295 )
+position = Vector2( 403, 919 )
 count = 5
-typ = 3
-
-[node name="Cell8" parent="." instance=ExtResource( 1 )]
-position = Vector2( 260, 267 )
-count = 5
-
-[node name="Cell9" parent="." instance=ExtResource( 1 )]
-position = Vector2( 325, 421 )
-count = 5
-
-[node name="Cell10" parent="." instance=ExtResource( 1 )]
-position = Vector2( 129, 409 )
-count = 5
-typ = 2
-
-[node name="Cell11" parent="." instance=ExtResource( 1 )]
-position = Vector2( 168, 943 )
-count = 15
 typ = 1
-isSun = true
-
-[node name="Cell3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 576, 899 )
-count = 5
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655372, 0, 0, 720909, 0, 0, 786446, 0, 0, 851982, 0, 0, 917518, 0, 0, 983042, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0, 983048, 0, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983052, 0, 0, 983053, 0, 0, 983054, 0, 0, 1245196, 0, 0, 1310732, 0, 0, 1310733, 0, 0, 1310734, 0, 0, 1310735, 0, 0, 1310736, 0, 0, 1310737, 0, 0, 1310738, 0, 0, 1638403, 0, 0, 1638404, 0, 0, 1638405, 0, 0, 1638406, 0, 0, 1638407, 0, 0, 1638408, 0, 0, 1638409, 0, 0, 1638410, 0, 0, 1638411, 0, 0, 1638412, 0, 0, 1638413, 0, 0, 1638414, 0, 0 )
+tile_data = PoolIntArray( 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245204, 0, 0 )

@@ -18,6 +18,15 @@
 #
 #############################################################################
 
+
+######
+#
+#  BUGS:
+#  - Enemy can go through player
+#  - Line should end with source color and not with target color
+#
+######
+
 extends Node2D
 
 var drag_from = null
@@ -28,19 +37,13 @@ var started = false
 var startTime = 0
 var processedFrame = -1
 var swipe_start = null
-var level = 1
+var level = 6
 var enemy_delay = ENEMY_DELAY
 
 const SPEED = 150
 const MAX_LEVEL_COUNT = 7
 const ENEMY_DELAY = 5
 
-
-######
-##
-##  TODO: Goldhaufen, Wachtürme
-##
-######
 
 func _ready():
 	loadLevel("Level" + str(level))
@@ -70,11 +73,11 @@ func drop(from, to):
 	addLine(from, to)
 
 func addLine(from, to):
-	# erst mal prüfen, ob line schon besteht
+	# first check if line already exists
 	if isAttacking(from, to) or isSupporting(from, to):
 		return
 
-	# line war schon da, allerdings in umgekehrter Reihenfolge
+	# line has been there before, but the direction was opposit
 	var linesToDelete = []
 	for line in lines:
 		if line.from == to and line.to == from and line.from.typ == line.to.typ:
@@ -103,7 +106,7 @@ func addLine(from, to):
 	update()
 	
 func _on_Button_pressed():
-	# starten
+	# start
 	var hand = $Level.get_node("Hand")
 	if hand:
 		hand.visible = false
@@ -114,7 +117,7 @@ func _on_Button_pressed():
 	startTime = OS.get_unix_time()
 
 func _on_Weiter_pressed():
-	# nächsten Level laden	
+	# load next level
 	$Weiter.visible = false
 	$Sieg.visible = false
 	processedFrame = -1
@@ -131,7 +134,7 @@ func _on_Weiter_pressed():
 	update()
 
 func _on_NochMal_pressed():
-	# level noch mal starten
+	# restart level
 	$NochMal.visible = false
 	$Niederlage.visible = false
 	$Undo.visible = true
@@ -181,29 +184,29 @@ func _process(delta):
 	var elapsed = curTime - startTime
 	$FPS.set_text(str(Engine.get_frames_per_second()) + " FPS")
 
-	# nach 5 Sekunden werden die Gegner auch aktiv
+	# aktivate enemy after 5 seconds
 	if elapsed > enemy_delay and elapsed > processedFrame:
 		for child in $Level.get_children():
 			if child is StaticBody2D:	
 				if child.typ > 1 and child.openGates() > 0:
-					# enemy hat noch min. einen gate frei, mit dem er andocken kann
+					# enemy has at least one gat free to be able to dock to a cell
 					var target = findNextTarget(child)
 					if target:
 						addLine(child,  target)
 	
-	# alle cellen schicken pro Sekunde eine neue energy los
+	# all cells sends an energy each second
 	if elapsed > processedFrame:
 		for line in lines:
 			sendEnergy(line)
 			if line.from.isSun:
-				# sende eine zweite Energy bei einer Sonne
+				# send a second ebergy if cell is a sun
 				var energy = sendEnergy(line)
-				# die position etwas nach vorne verlagern, damit man beide Energien sehen kann
+				# put the position more in front so that the player can see both
 				var pos = energy.position.move_toward(energy.target.position, 0.06 * SPEED)
 				energy.position = pos
 		processedFrame = elapsed
 	
-	#alle energien bewegen
+	#move all energies
 	for energy in energies:
 		var pos = energy.position.move_toward(energy.target.position, delta * SPEED)
 		
@@ -216,11 +219,11 @@ func _process(delta):
 			test.queue_free()
 			return
 		
-		# ziel fast erreicht, dann energy wieder löschen
+		# target almost reached, so delete this energy and incremt/decrement cell count
 		if Geometry.is_point_in_circle(pos, energy.target.position, 50):
 			if energy.source_typ == energy.target.typ:
 				if energy.target.count > 63:
-					# diese Energy senden wir gleich weiter an alle Channels
+					# if max count is reached, resend the energy through all channels
 					for line in lines:
 						if line.from == energy.target:
 							sendEnergy(line)
@@ -229,7 +232,7 @@ func _process(delta):
 			else:
 				energy.target.count = energy.target.count - 1
 				if energy.target.count < 0:
-					# Übernahme
+					# overtaking
 					energy.target.typ = energy.source_typ
 					energy.target.count = 1
 					deleteLines(energy.target)
