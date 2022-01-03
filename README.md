@@ -1,4 +1,4 @@
-# CancerWar
+# CancerHealing
 A game for Android written with the Godot Game Engine using GDScript.
 
 ![](screen.png) 
