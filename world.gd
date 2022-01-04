@@ -36,11 +36,11 @@ var started = false
 var startTime = 0
 var processedFrame = -1
 var swipe_start = null
-var level = 6
+var level = 1
 var enemy_delay = ENEMY_DELAY
 
 const SPEED = 150
-const MAX_LEVEL_COUNT = 8
+const MAX_LEVEL_COUNT = 10
 const ENEMY_DELAY = 5
 
 
